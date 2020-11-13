@@ -1,5 +1,5 @@
 // const router = require("express").Router();
-var db = require("..models/workout.js");
+const db = require("../models/workoutModel");
 
 module.exports = function(app) {
     app.get("/api/workouts", function(req, res){
