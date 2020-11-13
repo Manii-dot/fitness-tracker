@@ -1,1 +1,3 @@
-module.exports = {Exercise: require("./exerciseMod.js")}
+module.exports = {
+    Exercise: require("./exerciseMod"),
+    Workout: require("./workoutMod")};
