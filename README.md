@@ -19,3 +19,5 @@ the following were used:
 * MongoDB
 * HEROKU
 * MongoDB Atlas
+
+picture displayed there
