@@ -3,7 +3,7 @@ const db = require("../models/workoutModel.js");
 
 module.exports = function(app) {
     app.get("/api/workouts", function(req, res){
-        db.find().then((data) => 
+        db.find({}).then((data) => 
         
         res.json(data),
         console.log("get request"))
@@ -18,10 +18,11 @@ module.exports = function(app) {
         .catch(err => res.json(err))
     });
     app.put("/api/workouts/:id", function(req, res){
-        db.findByIdAndUpdate(params.id, {
+        db.findByIdAndUpdate(req.params.id, {
             $push: {exercises: req.body}
         })
-        .then((data) => res.json(data))
+        .then((data) => {console.log(data) 
+            res.json(data)})
         .catch(err => res.json(err))
     });
     app.delete("/api/workouts",({body}, res) => {

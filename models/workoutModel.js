@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const TheWorkoutModSchema = new Schema({
     date: {
         type: Date, 
-        default: Date.now
+        default:() => new Date()
     },
     exercises:[{
     name: {
@@ -13,10 +13,18 @@ const TheWorkoutModSchema = new Schema({
     type:{
         type: String
     }, 
-    weight:{type: Number}, 
-    sets:{type: Number}, 
-    reps:{type: Number}, 
-    duration:{type: Number},
+    weight:{
+        type: Number
+    }, 
+    sets:{
+        type: Number
+    }, 
+    reps:{
+        type: Number
+    }, 
+    duration:{
+        type: Number
+    },
         }]
 },
 
@@ -25,10 +33,11 @@ const TheWorkoutModSchema = new Schema({
         virtuals: true}}
 )
 
-TheWorkoutModSchema.virtual("exerciseTime").get(function() {
+TheWorkoutModSchema.virtual("totalDuration").get(function() {
     let time = 0;
-    for (let i=0; i < globalThis.exercise.length; i++){
-        time += this.duration[i].time;
+    console.log(this.exercises)
+    for (let i = 0; i < this.exercises.length; i++) {
+        time += this.exercises[i].duration;
     }
     return time;
 })
